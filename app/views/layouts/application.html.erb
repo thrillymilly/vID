@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <link type="text/css"
     <link href="https://fonts.googleapis.com/css?family=Teko:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
@@ -15,12 +16,11 @@
   <div class="top-nav">
     <div class="nav-main-left">
       <!-- <%= image_tag "logo.png", class: "logo" %> -->
-      <a href="/"><h2>v:ID</h2></a>
+      <a class="logo-holder" href="/"><h2>v:ID</h2></a>
     </div>
     <div class="nav-main-right">
       <%if logged_in? %>
 
-        <a class="button nav-button account-btn" href=<%="/users/#{current_user.id}"%>>Account</a>
         <%= form_tag '/session', method: 'delete' do %>
           <button class="nav-button">logout</button>
         <% end %>
@@ -77,14 +77,22 @@
   <div class="youtube-embeded">
   </div>
 
-  <div class="slider">
-    <input id="ex6" type="text" data-slider-min="0" data-slider-max="{20}" data-slider-step="1" data-slider-value="0"/>
-    <div id="ex6CurrentSliderValLabel">
-      Current Slider Value:
-      <div id="ex6SliderVal">0
+  <div class="container2">
+
+    <div class="slider">
+      <!-- <input id="ex6" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="0"/> -->
+
+      <div id="ex6CurrentSliderValLabel">
+
+        Current Slider Value:
+
+        <div id="ex6SliderVal"> 0</div>
+
       </div>
     </div>
   </div>
+<div>
+
 </div>
 
 

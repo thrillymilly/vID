@@ -1,6 +1,44 @@
+function convertTime(duration) {
+    var a = duration.match(/\d+/g);
+
+    if (duration.indexOf('M') >= 0 && duration.indexOf('H') == -1 && duration.indexOf('S') == -1) {
+        a = [0, a[0], 0];
+    }
+
+    if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1) {
+        a = [a[0], 0, a[1]];
+    }
+    if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1 && duration.indexOf('S') == -1) {
+        a = [a[0], 0, 0];
+    }
+
+    duration = 0;
+
+    if (a.length == 3) {
+        duration = duration + parseInt(a[0]) * 3600;
+        duration = duration + parseInt(a[1]) * 60;
+        duration = duration + parseInt(a[2]);
+    }
+
+    if (a.length == 2) {
+        duration = duration + parseInt(a[0]) * 60;
+        duration = duration + parseInt(a[1]);
+    }
+
+    if (a.length == 1) {
+        duration = duration + parseInt(a[0]);
+    }
+    console.log(duration);
+    dataSliderDuration = duration;
+
+}
+
+
+
 $(document).ready(function() {
 
   $("#ex6").slider();
+
   $("#ex6").on("slide", function(slideEvt) {
   	$("#ex6SliderVal").text(slideEvt.value);
   });
@@ -19,6 +57,7 @@ $(document).ready(function() {
 
   var vidId = getId($('.search-box').val());
 
+
   $('.search-button').on('click', function() {
     $.ajax({
       url: '/api/videos',
@@ -29,7 +68,7 @@ $(document).ready(function() {
     }).done(function(response){
       var youId = getId(response.url)
       var embeded = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + youId + '" frameborder="0" allowfullscreen></iframe>';
-      $('.youtube-embeded').append(embeded)
+      $('.youtube-embeded').append(embeded);
 
       var ytApiKey = "<%= ENV['YT_API_KEY'] %>"
 
@@ -39,12 +78,32 @@ $(document).ready(function() {
        url: url,
        dataType: "jsonp",
        success: function(data){
-         console.log(data.items[0].contentDetails.duration)
+        duration = data.items[0].contentDetails.duration
+        convertTime(duration)
+
+        $('<input></input>').attr({
+            'id': 'ex6',
+            'type': 'text',
+            'data-slider-min': '0',
+            'data-slider-max': dataSliderDuration,
+            'data-slider-step': '1',
+            'data-slider-value': '0'}).prependTo('.slider, slider-horizontal')
+
+         $('.slider-handle').attr({'aria-valuemax': dataSliderDuration})
+         $(".slider").slider('refresh');
+
+
+         for (var i = 0; i < dataSliderDuration; i++) {
+           $('<div/>').attr({'class':'tag-person'}).appendTo($('.container'));
+         }
+
        },
        error: function(jqXHR, textStatus, errorThrown) {
            alert (textStatus, + ' | ' + errorThrown);
-       }
+       },
+
       });
+
     });
   });
 });

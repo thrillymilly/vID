@@ -1,0 +1,170 @@
+* {
+  font-family: 'Work Sans', sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #C19D8C;
+  height: 100%;
+}
+
+/******* NAVIGATION BAR *******/
+
+.top-nav {
+  width: 100%;
+  height: 40px;
+  list-style-type: none;
+  background-color: #ffffff;
+  border-bottom: 1px solid #666;
+  display: flex;
+  flex-direction: row;
+  background-color:
+}
+
+.nav-main-left {
+  width: 40%;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.nav-main-left > *, .nav-main-right > * {
+  margin: 0 .5em;
+}
+
+.nav-main-left h2 {
+  font-family: 'Teko', sans-serif;
+  margin: -.25em 0 0 0;
+  color: #000;
+}
+
+.nav-main-right {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-main-right form > * {
+  margin: 0 .5em;
+}
+
+.logo {
+  height: 50px;
+  overflow: auto;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/****** LOGIN MODAL ******/
+.sign-upmodal-container,
+ .loginmodal-container {
+  padding: 30px;
+  max-width: 350px;
+  width: 100% !important;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: roboto;
+}
+
+.sign-upmodal-container h1,
+.loginmodal-container h1 {
+  text-align: center;
+  font-size: 1.8em;
+  font-family: roboto;
+}
+
+
+.sign-upmodal-container input[type=email], input[type=password],
+.loginmodal-container input[type=email], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.sign-upmodal,
+.loginmodal {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.sign-upmodal-container a,
+.loginmodal-container a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+}
+
+/******SEARCH AREA********/
+
+.search-area {
+  text-align: center;
+}
+
+.search-form {
+  display: inline-block;
+  position: relative;
+}
+
+.search-form button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.search, .suggestions {
+  width: 30em;
+}
+
+.youtube-embeded {
+  height: 315px;
+  background-color: mistyrose;
+  text-align: center;
+}
+
+/*********** SLIDER ***********/
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.slider {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+#ex6 {
+  text-align: center;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>v:ID</title>
+    <%= csrf_meta_tags %>
+    <link type="text/css"
+    <link href="https://fonts.googleapis.com/css?family=Teko:700" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+
+  <!--HEADER STARTS HERE  -->
+  <div class="top-nav">
+    <div class="nav-main-left">
+      <!-- <%= image_tag "logo.png", class: "logo" %> -->
+      <a href="/"><h2>v:ID</h2></a>
+    </div>
+    <div class="nav-main-right">
+      <%if logged_in? %>
+
+        <a class="button nav-button account-btn" href=<%="/users/#{current_user.id}"%>>Account</a>
+        <%= form_tag '/session', method: 'delete' do %>
+          <button class="nav-button">logout</button>
+        <% end %>
+
+      <% else %>
+
+      <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+      <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+    				<div class="loginmodal-container">
+    					<h1>Login</h1><br>
+    				  <%= form_tag '/session', method: 'post' do %>
+              <label for="">email</label>
+              <input type="email" name="email">
+              <label for="">password</label>
+              <input type="password" name="password">
+              <button>login</button>
+    				  <% end %>
+    				</div>
+  			</div>
+		  </div>
+
+      <a href="#" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a>
+      <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+    				<div class="sign-upmodal-container">
+    					<h1>Sign Up</h1><br>
+              <%= form_tag '/users', method: 'post' do %>
+                <label for="">email</label>
+                <input type="email" name="email" value="" placeholder="Email" class= "input-signup">
+                <label for="">password</label>
+                <input type="password" name="password" value="" placeholder="Create a password" class= "input-signup">
+                <button>Sign Up</button>
+              <% end %>
+    				</div>
+  			</div>
+		  </div>
+
+
+      <% end %>
+    </div>
+  </div>
+
+  <!-- HEADER ENDS HERE -->
+
+<div class="container">
+  <div class="search-area">
+      <div class="search-form">
+        <input type="text" class="search-box" name="youtube_url" placeholder="Search a video" oninvalid="this.setCustomValidity('Please enter a youtube url')" required>
+        <button class="search-button button-primary">SEARCH</button>
+      </div>
+  </div>
+
+  <div class="youtube-embeded">
+  </div>
+
+  <div class="slider">
+    <input id="ex6" type="text" data-slider-min="0" data-slider-max="{20}" data-slider-step="1" data-slider-value="0"/>
+    <div id="ex6CurrentSliderValLabel">
+      Current Slider Value:
+      <div id="ex6SliderVal">0
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <%= yield %>
+
+  </body>
+</html>

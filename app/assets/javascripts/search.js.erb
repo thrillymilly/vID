@@ -1,0 +1,55 @@
+$(document).ready(function() {
+
+  $("#ex6").slider();
+  $("#ex6").on("slide", function(slideEvt) {
+  	$("#ex6SliderVal").text(slideEvt.value);
+  });
+
+  //CONVERT URL TO EMBEDED
+  function getId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+  }
+
+  var vidId = getId($('.search-box').val());
+
+  $('.search-button').on('click', function() {
+    $.ajax({
+      url: '/api/videos',
+      method: 'post',
+      data: {
+        url: $('.search-box').val()
+      }
+    }).done(function(response){
+      var youId = getId(response.url)
+      var embeded = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + youId + '" frameborder="0" allowfullscreen></iframe>';
+      $('.youtube-embeded').append(embeded)
+
+      var ytApiKey = "<%= ENV['YT_API_KEY'] %>"
+
+      var url = 'https://www.googleapis.com/youtube/v3/videos?id='+ youId +'&key='+ ytApiKey +'&part=snippet,contentDetails';
+
+      $.ajax({
+       url: url,
+       dataType: "jsonp",
+       success: function(data){
+         console.log(data.items[0].contentDetails.duration)
+       },
+       error: function(jqXHR, textStatus, errorThrown) {
+           alert (textStatus, + ' | ' + errorThrown);
+       }
+      });
+    });
+  });
+});
+
+
+
+
+// GETS THE JSON DATA

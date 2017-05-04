@@ -167,7 +167,7 @@ body {
 .slider {
   display: inline-block;
   background-color: ;
-  width: 560px !important;
+  width: 100% !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
